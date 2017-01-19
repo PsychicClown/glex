@@ -7,9 +7,10 @@
 #include <utility>
 #include <fstream>
 #include <iostream>
-
 #include <GL/gl.h>
+#include <glm/glm.hpp>
 #include <SDL2/SDL.h>
+
 #include "common.h"
 #include "GameAsset.h"
 #include "Camera.h"
@@ -28,12 +29,12 @@ class GameAssetManager {
   void operator=(GameAssetManager const&); // assignment
   void AddAsset(std::shared_ptr<GameAsset>);
   void Draw();
+  void scaleModel(GLfloat x, GLfloat y, GLfloat z);
   void translateCamera(GLfloat x, GLfloat y, GLfloat z);
-  glm::mat4 model = glm::mat4(1.0f);
 
  private:
 
-Camera c;
+  Camera camera;
   GLuint CreateGLProgram(std::string &, std::string &);
   GLuint CreateGLESShader(GLenum, std::string &);
   // As this is private and we're writing to the GPU, we will use raw pointers.
